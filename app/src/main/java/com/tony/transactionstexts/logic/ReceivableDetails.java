@@ -36,12 +36,12 @@ public class ReceivableDetails {
     }
 
     //Extract the time
-    public String receivedTime(String withdrawalText){
-        int start = withdrawalText.indexOf("at")+3;
-        int end = withdrawalText.indexOf(" New ");
-
-        String dateString = withdrawalText.substring(start, end);
-
-        return dateString;
-    }
+//    public String receivedTime(String withdrawalText){
+//        int start = withdrawalText.indexOf("at")+3;
+//        int end = withdrawalText.indexOf(" New ");
+//
+//        String dateString = withdrawalText.substring(start, end);
+//
+//        return dateString;
+//    }
 }

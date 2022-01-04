@@ -28,7 +28,7 @@ public class TextTypeDeterminor {
                 senderName = receivables.senderName(receivables.receiveText);
                 amount = receivables.receivedAmount(receivables.receiveText);
                 date = receivables.receivedDate(receivables.receiveText);
-                time = receivables.receivedTime(receivables.receiveText);
+//                time = receivables.receivedTime(receivables.receiveText);
 
             }
         }

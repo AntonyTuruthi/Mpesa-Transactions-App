@@ -6,7 +6,7 @@ public class Transaction {
     String date;
     String time;
 
-    public Transaction(String entity, String amount, String date, String time) {
+    public Transaction(String entity, String amount, String date) {
         this.entity = entity;
         this.amount = amount;
         this.date = date;

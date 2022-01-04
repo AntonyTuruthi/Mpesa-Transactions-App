@@ -4,14 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.tony.transactionstexts.logic.Transaction;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private PagerViewAdapter pagerViewAdapter;
     TextView textView_withdrawals, textView_received;
     private ViewPager viewPager;
+    ArrayList<Transaction> transactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,4 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
 }
