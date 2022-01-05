@@ -30,12 +30,19 @@ public class TextTypeDeterminor {
 //                time = receivables.receivedTime(receivables.receiveText);
         }
         else if (mpesaText.contains("paid to")){
-            //check if the transaction message is a receivable and print the entity and amount
+            //check if the transaction message is a payment and print the entity and amount
 
             PaymentDetails paymentDetails = new PaymentDetails(mpesaText);
             entity = paymentDetails.paymentEntity(paymentDetails.paidToText);
             amount = paymentDetails.paidAmount(paymentDetails.paidToText);
             date = paymentDetails.paidDate(paymentDetails.paidToText);
+        } else {
+            //check if the transaction message is a sent and print the entity and amount
+
+            SentDetails sentDetails = new SentDetails(mpesaText);
+            entity = sentDetails.sentEntity(sentDetails.sentText);
+            amount = sentDetails.sentAmount(sentDetails.sentText);
+            date = sentDetails.sentDate(sentDetails.sentText);
         }
     }
 }

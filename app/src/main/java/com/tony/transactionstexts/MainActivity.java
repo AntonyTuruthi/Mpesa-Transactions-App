@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private PagerViewAdapter pagerViewAdapter;
-    TextView textView_withdrawals, textView_received, textView_payments;
+    TextView textView_withdrawals, textView_received, textView_payments, textView_sents;
     private ViewPager viewPager;
 
     @Override
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         textView_withdrawals = findViewById(R.id.withdrawals_fragment_label);
         textView_received = findViewById(R.id.received_fragment_label);
         textView_payments = findViewById(R.id.payments_fragment_label);
+        textView_sents = findViewById(R.id.sents_fragment_label);
 
         viewPager = findViewById(R.id.fragmentContainer);
 
@@ -50,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewPager.setCurrentItem(2);
+            }
+        });
+
+        textView_sents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(3);
             }
         });
 
@@ -85,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
             textView_received.setTextSize(15);
             textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
             textView_payments.setTextSize(15);
+            textView_sents.setTextSize(15);
+            textView_sents.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
         }
 
         if (position == 1){
@@ -94,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
             textView_received.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.green));
             textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
             textView_payments.setTextSize(15);
+            textView_sents.setTextSize(15);
+            textView_sents.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+
 
         }
 
@@ -104,8 +117,24 @@ public class MainActivity extends AppCompatActivity {
             textView_received.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
             textView_payments.setTextSize(25);
             textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.green));
+            textView_sents.setTextSize(15);
+            textView_sents.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
 
         }
+
+        if (position == 3){
+            textView_withdrawals.setTextSize(15);
+            textView_withdrawals.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_received.setTextSize(15);
+            textView_received.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_payments.setTextSize(15);
+            textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_sents.setTextSize(25);
+            textView_sents.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.green));
+
+        }
+
+
     }
 
 

@@ -28,6 +28,9 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
             case 2:
                 fragment = new PaymentsFragment();
                 break;
+            case 3:
+                fragment = new SentsFragment();
+                break;
         }
 
         return fragment;
@@ -35,6 +38,6 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

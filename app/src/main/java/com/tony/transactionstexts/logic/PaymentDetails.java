@@ -10,8 +10,6 @@ public class PaymentDetails {
     public PaymentDetails (String paidToText) {
 
         this.paidToText = paidToText;
-
-
     }
 
     // Extract Entity
