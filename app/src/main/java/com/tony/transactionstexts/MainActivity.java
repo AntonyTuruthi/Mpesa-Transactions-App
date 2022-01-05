@@ -17,9 +17,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private PagerViewAdapter pagerViewAdapter;
-    TextView textView_withdrawals, textView_received;
+    TextView textView_withdrawals, textView_received, textView_payments;
     private ViewPager viewPager;
-    ArrayList<Transaction> transactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView_withdrawals = findViewById(R.id.withdrawals_fragment_label);
         textView_received = findViewById(R.id.received_fragment_label);
+        textView_payments = findViewById(R.id.payments_fragment_label);
 
         viewPager = findViewById(R.id.fragmentContainer);
 
@@ -43,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewPager.setCurrentItem(1);
+            }
+        });
+
+        textView_payments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(2);
             }
         });
 
@@ -76,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             textView_withdrawals.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.green));
             textView_received.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
             textView_received.setTextSize(15);
+            textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_payments.setTextSize(15);
         }
 
         if (position == 1){
@@ -83,6 +92,18 @@ public class MainActivity extends AppCompatActivity {
             textView_withdrawals.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
             textView_received.setTextSize(25);
             textView_received.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.green));
+            textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_payments.setTextSize(15);
+
+        }
+
+        if (position == 2){
+            textView_withdrawals.setTextSize(15);
+            textView_withdrawals.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_received.setTextSize(15);
+            textView_received.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.white));
+            textView_payments.setTextSize(25);
+            textView_payments.setBackgroundColor(ContextCompat.getColor(textView_received.getContext(), R.color.green));
 
         }
     }

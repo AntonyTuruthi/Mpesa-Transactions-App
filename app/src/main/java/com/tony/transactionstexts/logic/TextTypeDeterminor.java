@@ -2,7 +2,7 @@ package com.tony.transactionstexts.logic;
 
 public class TextTypeDeterminor {
 
-    public String senderName;
+    public String entity;
     public String amount;
     public String date;
     public String time;
@@ -14,23 +14,28 @@ public class TextTypeDeterminor {
         if (mpesaText.contains("Withdraw")){
 
             WithdrawalDetails withDrawals = new WithdrawalDetails(mpesaText);
-            senderName = withDrawals.withdrawalEntity(withDrawals.withdrawalText);
+            entity = withDrawals.withdrawalEntity(withDrawals.withdrawalText);
             amount = withDrawals.withdrawalAmount(withDrawals.withdrawalText);
             date = withDrawals.withdrawalDate(withDrawals.withdrawalText);
             time = withDrawals.withdrawalTime(withDrawals.withdrawalText);
 
         }
-        else {
+        else if (mpesaText.contains("received")){
             //check if the transaction message is a receivable and print the entity and amount
-            if (mpesaText.contains("received")){
 
                 ReceivableDetails receivables = new ReceivableDetails(mpesaText);
-                senderName = receivables.senderName(receivables.receiveText);
+                entity = receivables.senderName(receivables.receiveText);
                 amount = receivables.receivedAmount(receivables.receiveText);
                 date = receivables.receivedDate(receivables.receiveText);
 //                time = receivables.receivedTime(receivables.receiveText);
+        }
+        else if (mpesaText.contains("paid to")){
+            //check if the transaction message is a receivable and print the entity and amount
 
-            }
+            PaymentDetails paymentDetails = new PaymentDetails(mpesaText);
+            entity = paymentDetails.paymentEntity(paymentDetails.paidToText);
+            amount = paymentDetails.paidAmount(paymentDetails.paidToText);
+            date = paymentDetails.paidDate(paymentDetails.paidToText);
         }
     }
 }

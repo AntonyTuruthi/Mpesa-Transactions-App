@@ -77,7 +77,7 @@ public class ReceivedFragment extends Fragment {
                 typeDeterminor.checkTransaction(mpesaText);
 
                 //Get the text details
-                String senderName = typeDeterminor.senderName;
+                String senderName = typeDeterminor.entity;
                 String amount = typeDeterminor.amount;
                 String date = typeDeterminor.date;
 //                String time = typeDeterminor.time;

@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.tony.transactionstexts.logic.TextList;
 import com.tony.transactionstexts.logic.TextTypeDeterminor;
 import com.tony.transactionstexts.logic.Transaction;
@@ -26,8 +25,8 @@ import com.tony.transactionstexts.logic.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WithdrawalsFragment extends Fragment {
-    private List<Transaction> withdrawalArrayList;
+public class PaymentsFragment extends Fragment {
+    private List<Transaction> paymentsArrayList;
     private RecyclerView recyclerView;
     private List<TextList> textList;
     private final static int REQUEST_CODE_PERMISSION_READ_SMS = 456;
@@ -35,10 +34,10 @@ public class WithdrawalsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.withdrawals_fragment, null);
+        View v = inflater.inflate(R.layout.payments_fragment, null);
 
-        recyclerView = v.findViewById(R.id.withdrawals_recyclerview);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), withdrawalArrayList);
+        recyclerView = v.findViewById(R.id.payments_recyclerview);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), paymentsArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -53,14 +52,23 @@ public class WithdrawalsFragment extends Fragment {
         getTextType();
 
         return v;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //Initialize the array
+        paymentsArrayList = new ArrayList<>();
+        textList = new ArrayList<>();
 
     }
 
+    //Here we are checking if the permission is granted
     private boolean checkPermission(String permission) {
         int checkPermission = ContextCompat.checkSelfPermission(getContext(), permission);
         return checkPermission == PackageManager.PERMISSION_GRANTED;
     }
-
 
     //Gets the text type and it's details which include Entity, Amount, Date and Time the adds them on an array
     private void getTextType() {
@@ -69,11 +77,11 @@ public class WithdrawalsFragment extends Fragment {
 
         refreshList();
 
-        for (int i = 0; i < textList.size(); i++){
+        for (int i = 0; i < textList.size(); i++) {
 
             String mpesaText = textList.get(i).getTransactionText();
 
-            if (mpesaText.contains("Withdraw")) {
+            if (mpesaText.contains("paid to")) {
                 typeDeterminor.checkTransaction(mpesaText);
 
                 //Get the text details
@@ -82,24 +90,14 @@ public class WithdrawalsFragment extends Fragment {
                 String date = typeDeterminor.date;
                 String time = typeDeterminor.time;
 
-                withdrawalArrayList.add(new Transaction(entity, amount, date));
+                paymentsArrayList.add(new Transaction(entity, amount, date));
             }
 
         }
 
-
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //Initialize the array
-        withdrawalArrayList = new ArrayList<>();
-        textList = new ArrayList<>();
-
-    }
-
+    //This method gets the SMS from the inbox and sorts the MPESA ones then adds them to an array of textList.
     public void refreshList() {
         ContentResolver cResolver = getActivity().getContentResolver();
         Cursor smsInboxCursor = cResolver.query(Uri.parse("content://sms/inbox"),
@@ -115,10 +113,8 @@ public class WithdrawalsFragment extends Fragment {
             if (smsAddress.equals("MPESA")) {
                 String text = smsInboxCursor.getString(indexBody);
                 textList.add(new TextList(text));
-
             }
         } while (smsInboxCursor.moveToNext());
 
     }
-
 }
