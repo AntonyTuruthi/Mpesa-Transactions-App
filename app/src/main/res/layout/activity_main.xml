@@ -1,21 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <include layout="@layout/tab_layout">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="M-Pesa Transactions App"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="#4a6bfb"/>
 
-    </include>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4A6BFB">
 
-    <androidx.viewpager.widget.ViewPager
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="@drawable/round_back_white10_100"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/tabItem_withdrawals"
+                android:background="@drawable/round_back_white_100"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Withdraw"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tabItem_receives"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Received"
+                android:textColor="#80FFFFFF"/>
+
+            <TextView
+                android:id="@+id/tabItem_payments"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Payments"
+                android:textColor="#80FFFFFF"/>
+
+            <TextView
+                android:id="@+id/tabItem_sents"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Sent"
+                android:textColor="#80FFFFFF"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragmentContainer"
-        android:layout_marginTop="50dp">
+        android:id="@+id/fragmentContainer"/>
 
-    </androidx.viewpager.widget.ViewPager>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

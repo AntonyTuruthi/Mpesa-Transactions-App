@@ -6,52 +6,52 @@
     android:background="#ffffff"
     android:padding="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/withdrawals_fragment_label"
-            android:text="Withdrawals"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="5dp"
-            android:background="@color/green"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/withdrawals_fragment_label"-->
+<!--            android:text="Withdrawals"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="5dp"-->
+<!--            android:background="@color/green"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/received_fragment_label"
-            android:text="Received"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:background="@color/white"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/received_fragment_label"-->
+<!--            android:text="Received"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="5dp"-->
+<!--            android:background="@color/white"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/payments_fragment_label"
-            android:text="Payments"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:background="@color/white"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/payments_fragment_label"-->
+<!--            android:text="Payments"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="5dp"-->
+<!--            android:background="@color/white"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sents_fragment_label"
-            android:text="Sent"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:background="@color/white"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/sents_fragment_label"-->
+<!--            android:text="Sent"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="5dp"-->
+<!--            android:background="@color/white"/>-->
 
 </LinearLayout>

@@ -22,14 +22,14 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
                 break;
 
             case 1:
-                fragment = new ReceivedFragment();
+                fragment = new ReceivesFragment();
                 break;
 
             case 2:
                 fragment = new PaymentsFragment();
                 break;
             case 3:
-                fragment = new SentsFragment();
+                fragment = new SentFragment();
                 break;
         }
 

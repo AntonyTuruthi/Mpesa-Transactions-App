@@ -25,16 +25,59 @@ import com.tony.transactionstexts.logic.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReceivedFragment extends Fragment {
+public class ReceivesFragment extends Fragment {
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+
+    private String mParam1;
+    private String mParam2;
+
     private List<Transaction> receivedArrayList;
     private RecyclerView recyclerView;
     private List<TextList> textList;
     private final static int REQUEST_CODE_PERMISSION_READ_SMS = 456;
 
-    @Nullable
+    public ReceivesFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ReceivesFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ReceivesFragment newInstance(String param1, String param2) {
+        ReceivesFragment fragment = new ReceivesFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.received_fragment, null);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        //Initialize the array
+        receivedArrayList = new ArrayList<>();
+        textList = new ArrayList<>();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v =  inflater.inflate(R.layout.fragment_receives, null);
 
         recyclerView = v.findViewById(R.id.received_recyclerview);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), receivedArrayList);
@@ -53,7 +96,6 @@ public class ReceivedFragment extends Fragment {
         getTextType();
 
         return v;
-
     }
 
     private boolean checkPermission(String permission) {
@@ -87,16 +129,6 @@ public class ReceivedFragment extends Fragment {
             }
 
         }
-
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //Initialize the array
-        receivedArrayList = new ArrayList<>();
-        textList = new ArrayList<>();
 
     }
 

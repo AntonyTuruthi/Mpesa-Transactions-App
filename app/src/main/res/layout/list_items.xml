@@ -1,46 +1,54 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_margin="8dp"
-app:cardCornerRadius="8dp">
-
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
 
-
-    <TextView
-        android:id="@+id/txtEntity"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:text="Entity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_weight="1"/>
-
-    <TextView
-        android:id="@+id/txtAmount"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:text="Amount"
-        app:layout_constraintStart_toEndOf="@+id/txtEntity"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_weight="2"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        app:layout_constraintStart_toEndOf="@+id/txtAmount"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/txtEntity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entity"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_weight="2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="15dp">
 
 
-</LinearLayout>
+            <TextView
+
+                android:id="@+id/txtAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="Amount" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+

@@ -26,15 +26,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentsFragment extends Fragment {
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
+
     private List<Transaction> paymentsArrayList;
     private RecyclerView recyclerView;
     private List<TextList> textList;
     private final static int REQUEST_CODE_PERMISSION_READ_SMS = 456;
 
-    @Nullable
+    public PaymentsFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment PaymentsFragment.
+     */
+
+    public static PaymentsFragment newInstance(String param1, String param2) {
+        PaymentsFragment fragment = new PaymentsFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.payments_fragment, null);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        //Initialize the array
+        paymentsArrayList = new ArrayList<>();
+        textList = new ArrayList<>();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_payments, null);
 
         recyclerView = v.findViewById(R.id.payments_recyclerview);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), paymentsArrayList);
@@ -52,16 +94,6 @@ public class PaymentsFragment extends Fragment {
         getTextType();
 
         return v;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //Initialize the array
-        paymentsArrayList = new ArrayList<>();
-        textList = new ArrayList<>();
-
     }
 
     //Here we are checking if the permission is granted
@@ -92,9 +124,7 @@ public class PaymentsFragment extends Fragment {
 
                 paymentsArrayList.add(new Transaction(entity, amount, date));
             }
-
         }
-
     }
 
     //This method gets the SMS from the inbox and sorts the MPESA ones then adds them to an array of textList.

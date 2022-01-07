@@ -25,16 +25,60 @@ import com.tony.transactionstexts.logic.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SentsFragment extends Fragment {
+public class SentFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
     private List<Transaction> sentsArrayList;
     private RecyclerView recyclerView;
     private List<TextList> textList;
     private final static int REQUEST_CODE_PERMISSION_READ_SMS = 456;
 
-    @Nullable
+    public SentFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment SentFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static SentFragment newInstance(String param1, String param2) {
+        SentFragment fragment = new SentFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sents_fragment, null);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        //Initialize the array
+        sentsArrayList = new ArrayList<>();
+        textList = new ArrayList<>();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_sent, null);
 
         recyclerView = v.findViewById(R.id.sents_recyclerview);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), sentsArrayList);
@@ -81,10 +125,7 @@ public class SentsFragment extends Fragment {
 
                 sentsArrayList.add(new Transaction(entity, amount, date));
             }
-
         }
-
-
     }
 
     public void refreshList() {
@@ -105,16 +146,6 @@ public class SentsFragment extends Fragment {
 
             }
         } while (smsInboxCursor.moveToNext());
-
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //Initialize the array
-        sentsArrayList = new ArrayList<>();
-        textList = new ArrayList<>();
 
     }
 }

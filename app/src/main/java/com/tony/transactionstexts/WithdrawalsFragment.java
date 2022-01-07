@@ -27,15 +27,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WithdrawalsFragment extends Fragment {
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
+
     private List<Transaction> withdrawalArrayList;
     private RecyclerView recyclerView;
     private List<TextList> textList;
     private final static int REQUEST_CODE_PERMISSION_READ_SMS = 456;
 
-    @Nullable
+    public WithdrawalsFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment WithdrawalsFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static WithdrawalsFragment newInstance(String param1, String param2) {
+        WithdrawalsFragment fragment = new WithdrawalsFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.withdrawals_fragment, null);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        //Initialize the array
+        withdrawalArrayList = new ArrayList<>();
+        textList = new ArrayList<>();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_withdrawals, null);
 
         recyclerView = v.findViewById(R.id.withdrawals_recyclerview);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), withdrawalArrayList);
@@ -53,14 +95,12 @@ public class WithdrawalsFragment extends Fragment {
         getTextType();
 
         return v;
-
     }
 
     private boolean checkPermission(String permission) {
         int checkPermission = ContextCompat.checkSelfPermission(getContext(), permission);
         return checkPermission == PackageManager.PERMISSION_GRANTED;
     }
-
 
     //Gets the text type and it's details which include Entity, Amount, Date and Time the adds them on an array
     private void getTextType() {
@@ -87,17 +127,6 @@ public class WithdrawalsFragment extends Fragment {
 
         }
 
-
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //Initialize the array
-        withdrawalArrayList = new ArrayList<>();
-        textList = new ArrayList<>();
-
     }
 
     public void refreshList() {
@@ -120,5 +149,4 @@ public class WithdrawalsFragment extends Fragment {
         } while (smsInboxCursor.moveToNext());
 
     }
-
 }
